@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Industrial SCADA</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- TELA DE LOGIN -->
+<div id="login">
+    <div class="login-box">
+        <div class="login-logo">⚙</div>
+        <h1>SCADA INDUSTRIAL</h1>
+        <p class="login-sub">Indústria 4.0 — Controle de Acesso</p>
+        <input type="text" id="nome" placeholder="Nome do operador" autocomplete="off">
+        <button onclick="validarAcesso()">ENTRAR</button>
+        <div id="verify"></div>
+    </div>
+</div>
+
+<!-- DASHBOARD PRINCIPAL -->
+<div id="dashboard">
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="header-left">
+            <span class="header-icon">⚙</span>
+            <div>
+                <h1>SCADA INDUSTRIAL</h1>
+                <span id="operadorLogado" class="operador-label"></span>
+            </div>
+        </div>
+        <div class="header-right">
+            <span id="relogio" class="relogio"></span>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Linha de Produção -->
+        <section class="card" id="secao-maquinas">
+            <h2><span class="icon">🏭</span> Linha de Produção</h2>
+            <select id="selectMaquinas" onchange="verificarStatus(this.value)">
+                <option value="" disabled selected>-- Selecione a máquina --</option>
+            </select>
+            <div id="status" class="status-box status-vazio">Nenhuma máquina selecionada</div>
+        </section>
+
+        <!-- Telemetria Térmica -->
+        <section class="card" id="secao-sensor">
+            <h2><span class="icon">🌡️</span> Telemetria Térmica</h2>
+            <div id="sensor" class="sensor-display">
+                <span id="tempValor">--</span>
+                <span id="tempLabel">Aguardando...</span>
+            </div>
+            <div class="sensor-barra-container">
+                <div id="sensorBarra" class="sensor-barra"></div>
+            </div>
+        </section>
+
+        <!-- Emergência -->
+        <section class="card" id="secao-emergencia">
+            <h2><span class="icon">🚨</span> Sistema de Emergência</h2>
+            <div id="emergenciaStatus" class="emergencia-normal">Sistema operando normalmente</div>
+            <div id="emergenciaContador" class="emergencia-contador"></div>
+        </section>
+
+    </main>
+</div>
+
+<script src="scripts/script.js"></script>
+</body>
+</html>
