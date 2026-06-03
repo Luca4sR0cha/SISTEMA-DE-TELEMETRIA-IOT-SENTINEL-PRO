@@ -1,0 +1,266 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f1117;
+  color: #cbd5e1;
+  padding: 28px 24px;
+  max-width: 980px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+h1 span { color: #38bdf8; }
+
+.subtitulo {
+  font-size: 0.72rem;
+  color: #475569;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 14px;
+}
+
+/* FORMULÁRIO */
+#form-section {
+  background: #1e2433;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+input, select {
+  padding: 9px 12px;
+  background: #131720;
+  border: 1px solid #2d3748;
+  border-radius: 6px;
+  color: #e2e8f0;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color .2s;
+  -webkit-appearance: none;
+}
+
+input::placeholder { color: #475569; }
+input:focus, select:focus { border-color: #38bdf8; }
+select option { background: #1e2433; }
+
+#nome  { flex: 2; min-width: 180px; }
+#tipo  { flex: 1; min-width: 130px; }
+#valor { flex: 1; min-width: 100px; }
+
+#unidade {
+  font-size: 0.78rem;
+  color: #38bdf8;
+  background: rgba(56,189,248,.1);
+  border: 1px solid rgba(56,189,248,.25);
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+button {
+  padding: 9px 20px;
+  background: #38bdf8;
+  color: #0f1117;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  transition: background .2s, transform .1s;
+}
+
+button:hover  { background: #7dd3fc; }
+button:active { transform: scale(.97); }
+
+#aviso {
+  width: 100%;
+  font-size: 0.78rem;
+  color: #f87171;
+  margin: 0;
+  min-height: 14px;
+}
+
+/* CARD DE REFERÊNCIA */
+#card-referencia {
+  background: #1e2433;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ref-titulo {
+  font-size: 0.62rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 2px;
+}
+
+.ref-linha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+}
+
+.ref-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ref-dot.temp { background: #fb923c; }
+.ref-dot.pres { background: #38bdf8; }
+.ref-dot.umid { background: #4ade80; }
+
+.ref-label { color: #64748b; flex: 1; }
+.ref-val   { color: #e2e8f0; font-weight: 600; font-size: 0.8rem; }
+
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: #1e2433;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  padding: 16px;
+  transition: transform .15s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* faixa lateral colorida por tipo */
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  border-radius: 10px 0 0 10px;
+  background: #2d3748;
+}
+.card[data-tipo="TEMPERATURA"]::before { background: #fb923c; }
+.card[data-tipo="PRESSÃO"]::before     { background: #38bdf8; }
+.card[data-tipo="UMIDADE"]::before     { background: #4ade80; }
+
+.card:hover { transform: translateY(-2px); }
+
+.card.critico {
+  border-color: #f87171;
+  animation: pulsar 1.4s ease-in-out infinite;
+}
+
+@keyframes pulsar {
+  0%, 100% { box-shadow: 0 0 0   rgba(248,113,113,0); }
+  50%       { box-shadow: 0 0 16px rgba(248,113,113,.5); }
+}
+
+.card h3  { font-size: 0.88rem; font-weight: 600; color: #f1f5f9; margin-bottom: 3px; }
+.card .tipo { font-size: 0.68rem; color: #475569; letter-spacing: 2px; margin-bottom: 12px; }
+
+.card[data-tipo="TEMPERATURA"] .tipo { color: #fb923c; }
+.card[data-tipo="PRESSÃO"]     .tipo { color: #38bdf8; }
+.card[data-tipo="UMIDADE"]     .tipo { color: #4ade80; }
+
+.card .valor-linha {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.card.critico .valor-linha { color: #f87171; }
+
+.card .valor-linha small {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 400;
+  margin-left: 3px;
+}
+
+.status-normal  { color: #4ade80; font-size: 0.72rem; font-weight: 600; }
+.status-critico {
+  color: #f87171;
+  font-size: 0.72rem;
+  font-weight: 600;
+  animation: piscar .9s ease-in-out infinite;
+}
+
+@keyframes piscar {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .4; }
+}
+
+.card .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.card button {
+  background: transparent;
+  color: #475569;
+  border: 1px solid #2d3748;
+  padding: 3px 9px;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  border-radius: 4px;
+}
+
+.card button:hover {
+  color: #f87171;
+  border-color: #f87171;
+  background: rgba(248,113,113,.08);
+  transform: none;
+}
+
+/* GRÁFICO */
+section:last-child {
+  background: #1e2433;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+canvas { display: block; width: 100% !important; }
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  #form-section { flex-direction: column; }
+  input, select, button { width: 100%; }
+  #unidade { text-align: center; }
+}

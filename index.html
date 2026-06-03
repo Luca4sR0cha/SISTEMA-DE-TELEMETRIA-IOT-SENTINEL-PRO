@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telemetria Industrial</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>⬡ <span>Sensor</span>Watch</h1>
+  <span class="subtitulo">Telemetria Industrial</span>
+
+  <!-- CARD DE REFERÊNCIA -->
+  <div id="card-referencia">
+    <p class="ref-titulo">Faixas ideais de operação</p>
+    <div class="ref-linha">
+      <span class="ref-dot temp"></span>
+      <span class="ref-label">Temperatura</span>
+      <span class="ref-val">≤ 50 °C</span>
+    </div>
+    <div class="ref-linha">
+      <span class="ref-dot pres"></span>
+      <span class="ref-label">Pressão</span>
+      <span class="ref-val">≤ 100 Bar</span>
+    </div>
+    <div class="ref-linha">
+      <span class="ref-dot umid"></span>
+      <span class="ref-label">Umidade</span>
+      <span class="ref-val">30% – 80%</span>
+    </div>
+  </div>
+
+  <!-- FORMULÁRIO -->
+  <section id="form-section">
+    <input  id="nome"  type="text"   placeholder="Nome do sensor"
+            onblur="this.value = this.value.trim()" />
+
+    <select id="tipo" onchange="atualizarUnidade()">
+      <option value="">Tipo</option>
+      <option value="TEMPERATURA">Temperatura</option>
+      <option value="PRESSÃO">Pressão</option>
+      <option value="UMIDADE">Umidade</option>
+    </select>
+
+    <input  id="valor" type="number" placeholder="Valor"
+            onkeyup="avisoTempo()" />
+
+    <span id="unidade">—</span>
+    <button onclick="adicionarSensor()">Adicionar</button>
+    <p id="aviso"></p>
+  </section>
+
+  <!-- CARDS -->
+  <section>
+    <h2>Sensores cadastrados</h2>
+    <div id="grid"></div>
+  </section>
+
+  <!-- GRÁFICO -->
+  <section>
+    <h2>Médias por categoria</h2>
+    <canvas id="grafico" height="100"></canvas>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
